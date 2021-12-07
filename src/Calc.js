@@ -1,26 +1,29 @@
 import React, {useState} from 'react';
 import './Calc.css';
+import Result from "./components/Result";
 
 function Calc(){
 
+    const [input, setInput] = useState("")
     const [result, setResult] = useState("");
 
     function click(e){
-        setResult(result.concat(e.target.value));
+        setInput(input.concat(e.target.value));
         console.log(e.target.value);
     };
 
-    function clear(e){
+    function clear(){
+        setInput("");
         setResult("");
     };
 
-    function erase(e){
-        setResult(result.substring(0, result.length - 1));
+    function erase(){
+        setInput(input.substring(0, input.length - 1));
     };
 
-    function equal(e){
+    function equal(){
         try{
-        setResult(eval(result).toString())
+        setResult(eval(input).toString())
         } 
         catch(e){
             setResult("ERROR");
@@ -28,13 +31,12 @@ function Calc(){
     };
 
     return(
+        <div className="fundo">
     <div className="container">
         <h1>Calculadora React</h1>
+        <Result input={input} result={result}></Result>
         <div>
-            <input type="text" value={result}></input>
-        </div>
-        <div>
-            <table className="table">
+            <table className="buttons">
                 <tr>
                     <td><button onClick={clear}>AC</button></td>
                     <td><button onClick={erase}>ER</button></td>
@@ -66,6 +68,7 @@ function Calc(){
             </table>
 
         </div>
+    </div>
     </div>)
 
 }
