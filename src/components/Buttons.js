@@ -35,6 +35,9 @@ function Buttons (props) {
                     <td><button value="0" onClick={props.click}>0</button></td>
                     <td><button value="." onClick={props.click}>.</button></td>
                 </tr>
+                <tr>
+                    <td><button onclick={props.hist}>Histórico</button></td>
+                </tr>
             </table>
         </div>
     )

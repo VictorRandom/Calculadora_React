@@ -7,6 +7,7 @@ function Calc(){
 
     const [input, setInput] = useState("")
     const [result, setResult] = useState("");
+    let history = [];
 
     function click(e){
         setInput(input.concat(e.target.value));
@@ -24,20 +25,26 @@ function Calc(){
 
     function equal(){
         try{
-        setResult(eval(input).toString())
+        setResult(eval(input).toString());
+        hist();
         } 
         catch(e){
             setResult("ERROR");
         }
     };
 
+    function hist(){
+        history.push(result);
+        console.log(history);
+    }
+
     return(
-        <div className="fundo">
-    <div className="container">
-        <h1>Calculadora React</h1>
-        <Result input={input} result={result}></Result>
-        <Buttons click={click} clear={clear} erase={erase} equal={equal}></Buttons>
-    </div>
+    <div className="fundo">
+        <div className="container">
+            <h1>Calculadora React</h1>
+            <Result input={input} result={result}></Result>
+            <Buttons click={click} clear={clear} erase={erase} equal={equal} hist={hist}></Buttons>
+        </div>
     </div>)
 
 }
